@@ -1,0 +1,55 @@
+#!/bin/bash
+#   Connect to NTU CSIE NLP Lab's Workstations
+#   2014.05.30 @qcl <ccli at nlg.csie.ntu.edu.tw> <r01922024 at csie.ntu.edu.tw>
+
+function usage(){
+    echo "Usage: `basename $0` [username] [workstation#]"
+    echo "  [username]: username on NLG-WKS"
+    echo "  [workstation#]: "
+    echo "      0: nlg.csie.ntu.edu.tw"
+    echo "      1-9a-c: NLG-WKS-#"
+    exit
+}
+
+if [ $# -lt 2 ] || [ $# -gt 2 ] ; then
+    usage
+    exit
+fi
+
+NLG_WKS=nlg.csie.ntu.edu.tw
+NLG_WKS_URL=nlg-wks.csie.org
+NLG_WKS_217=nlg7.csie.ntu.edu.tw
+USERNAME=$1
+MACHINE=$2
+
+echo "NTU CSIE NLP Lab Workstation Connection"
+
+case ${MACHINE} in
+    "0")
+        echo "Connect to NLG-WKS as ${USERNAME}"
+        ssh $USERNAME@$NLG_WKS
+        ;;
+    "1")
+        echo "Connect to NLG-WKS-${MACHINE} as ${USERNAME}"
+        ssh $USERNAME@$NLG_WKS_URL
+        ;;
+    [3-9])
+        echo "Connect to NLG-WKS-${MACHINE} as ${USERNAME}"
+        ssh $USERNAME@$NLG_WKS_URL -p 2200$MACHINE
+        ;;
+    "a")
+        echo "Connect to NLG-WKS-${MACHINE} as ${USERNAME}"
+        ssh $USERNAME@$NLG_WKS_217
+        ;;
+    "b")
+        echo "Connect to NLG-WKS-${MACHINE} as ${USERNAME}"
+        ssh $USERNAME@$NLG_WKS_217 -p 22002
+        ;;
+    "c")
+        echo "Connect to NLG-WKS-${MACHINE} as ${USERNAME}"
+        ssh $USERNAME@$NLG_WKS_217 -p 22003
+        ;;
+    *)
+        echo "There is no machine NLG-WKS-${MACHINE}"
+        ;;
+esac

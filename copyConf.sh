@@ -11,3 +11,6 @@ cp mongorc.js ~/.mongorc.js
 
 #python
 cp pyrc ~/.pyrc
+
+#for NTU CSIE NLP Lab Workstation Connection
+sudo cp NLG /usr/local/bin/NLG
