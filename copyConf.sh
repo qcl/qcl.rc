@@ -14,3 +14,6 @@ cp pyrc ~/.pyrc
 
 #for NTU CSIE NLP Lab Workstation Connection
 sudo cp NLG /usr/local/bin/NLG
+
+#for NTU CSIE Workstation Connection
+sudo cp CSIE /usr/local/bin/CSIE

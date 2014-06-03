@@ -1,0 +1,39 @@
+#!/bin/bash
+#   Connect to NTU CSIE's Workstations
+#   2014.06.03 @qcl <r01922024 at csie.ntu.edu.tw>
+
+function usage(){
+    echo "Usage: `basename $0` [username] [linux#]"
+    echo "  [username]: username on CSIE Workstation"
+    echo "  [workstation#]: "
+    echo "      1-20: linux#.csie.org"
+    exit
+}
+
+if [ $# -lt 2 ] || [ $# -gt 2 ] ; then
+    usage
+    exit
+fi
+
+USERNAME=$1
+MACHINE=$2
+
+echo "NTU CSIE Workstation Connection"
+
+case ${MACHINE} in
+    [1-9])
+        echo "Connect to NTU CSIE linux${MACHINE} as ${USERNAME}"
+        ssh $USERNAME@linux$MACHINE.csie.org
+        ;;
+    1[0-9])
+        echo "Connect to NTU CSIE linux${MACHINE} as ${USERNAME}"
+        ssh $USERNAME@linux$MACHINE.csie.org
+        ;;
+    20)
+        echo "Connect to NTU CSIE linux${MACHINE} as ${USERNAME}"
+        ssh $USERNAME@linux$MACHINE.csie.org
+        ;;
+    *)
+        echo "There is no machine linux${MACHINE}"
+        ;;
+esac
