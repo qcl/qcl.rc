@@ -20,6 +20,8 @@ set expandtab
 set shiftwidth=4
 set autoindent
 set backspace=indent,eol,start
+set cursorline
+set wildmenu
 syntax on
 
 " MacBook Air Keyboard mapping
@@ -31,6 +33,12 @@ imap <ESC>[F <C-O><End>
 cmap <ESC>[H <Home>
 cmap <ESC>[F <End>
 "endif
+
+" Conflict with ctrl+w in Chrome
+nmap <ESC>[1;5C <C-w>l
+nmap <ESC>[1;5D <C-w>h
+nmap <ESC>[1;5A <C-w>k
+nmap <ESC>[1;5B <C-w>j
 
 " vundle setting
 filetype off
