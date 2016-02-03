@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#   xcode.sh
+#   2014/11/06
+#   Qing-Cheng Li <qcli at yahoo-inc.com>
+#
+#   Launch Xcode and open the workspace if there is *.xcworkspace file in current dir.
+
+for f in *.xcworkspace; do
+	[ -e $f ] && echo "Found Xcode Worksapce file $f, open it in Xcode..." && open $f || echo "Not found any xcode .workspace file"
+	break
+done
