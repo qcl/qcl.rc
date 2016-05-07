@@ -3,12 +3,12 @@ set nocompatible
 " auto install vundle
 " require git
 let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
     silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     let iCanHazVundle=0
 endif
 
@@ -20,6 +20,7 @@ set expandtab
 set shiftwidth=4
 set autoindent
 set backspace=indent,eol,start
+set showcmd
 set cursorline
 set wildmenu
 syntax on
@@ -34,46 +35,60 @@ cmap <ESC>[H <Home>
 cmap <ESC>[F <End>
 "endif
 
-" Conflict with ctrl+w in Chrome
-nmap <ESC>[1;5C <C-w>l
-nmap <ESC>[1;5D <C-w>h
-nmap <ESC>[1;5A <C-w>k
-nmap <ESC>[1;5B <C-w>j
-
 " vundle setting
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let vundle manage vundle, required
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+
 " original repos on Github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Lokaltog/vim-powerline'
-" Bundle 'Shougo/neocomplete.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'tpope/vim-rails.git'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'mattn/emmet-vim'
+Plugin 'othree/html5.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'Rykka/colorv.vim'
+" needed for fetching schemes online.
+Plugin 'mattn/webapi-vim'
+" Plugin 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/context_filetype.vim'
 " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'AutoComplPop'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+Plugin 'AutoComplPop'
+" Plugin 'jQuery'
+
+call vundle#end()
 
 " powerline
 set laststatus=2
 let g:Powerline_symbols = 'unicode'
-
-filetype plugin indent on     " required!
 
 "vim-indent-guides
 let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  guibg=red   ctermbg=3
 hi IndentGuidesEven guibg=green ctermbg=4
 
+
+filetype plugin indent on     " required!
+
+
 " colorscheme settings
 set t_Co=256
 "colorscheme ir_black_p
 
+"emmet
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
+"neocomplete
+let g:neocomplete#enable_at_startup = 1
+
+let g:used_javascript_libs = 'underscore,backbone,jquery'
