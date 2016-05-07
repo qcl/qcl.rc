@@ -45,12 +45,20 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " original repos on Github
+" git related, used by lightline
 Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/vim-easymotion'
+
+"Plugin 'Lokaltog/vim-easymotion'
+
+" type html tag than press ctrl+e
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'tpope/vim-rails.git'
+
+" Plugin 'tpope/vim-rails.git'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Lokaltog/vim-powerline'
+
+" shows status line
+Plugin 'itchyny/lightline.vim'
+
 Plugin 'mattn/emmet-vim'
 Plugin 'othree/html5.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
@@ -67,9 +75,31 @@ Plugin 'AutoComplPop'
 
 call vundle#end()
 
-" powerline
+"" powerline
+"set laststatus=2
+"let g:Powerline_symbols = 'unicode'
+
+" lightline
 set laststatus=2
-let g:Powerline_symbols = 'unicode'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
 
 "vim-indent-guides
 let g:indent_guides_auto_colors = 0
