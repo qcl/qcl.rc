@@ -34,7 +34,7 @@ alias rm='rm -i'
 
 #   TODO check git dir
 #   git auto completion
-source /usr/local/git/contrib/completion/git-completion.bash
+#source /usr/local/git/contrib/completion/git-completion.bash
 
 #   TODO it's only for MacOS which has homebrew installed
 #   use homebrew version Applications
